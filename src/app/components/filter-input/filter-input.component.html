@@ -1,0 +1,5 @@
+<select name="filter" (change)="filter($event)">
+  <option *ngFor="let status of statuses">
+    {{ status }}
+  </option>
+</select>
