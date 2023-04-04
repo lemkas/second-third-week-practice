@@ -11,8 +11,7 @@ import { fromEvent, Subscription } from 'rxjs';
 @Directive({
   selector: '[Draggable]',
 })
-export class DruggableDirective implements OnInit, OnDestroy {
-  private subscriptions: Subscription[] = [];
+export class DruggableDirective implements OnInit {
   private element!: HTMLElement;
   dragSub!: Subscription;
   dragStartSub!: Subscription;
@@ -27,10 +26,6 @@ export class DruggableDirective implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.element = this.elementRef.nativeElement as HTMLElement;
     this.initDrug();
-  }
-
-  ngOnDestroy(): void {
-    this.subscriptions.forEach((s) => s?.unsubscribe());
   }
 
   private setTransform(xPos: number, yPos: number): void {
