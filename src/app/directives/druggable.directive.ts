@@ -14,9 +14,10 @@ import { fromEvent, Subscription } from 'rxjs';
 export class DruggableDirective implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
   private element!: HTMLElement;
-  private dragSub!: Subscription;
-  private dragStartSub!: Subscription;
-  private dragEndSub!: Subscription;
+  dragSub!: Subscription;
+  dragStartSub!: Subscription;
+  dragEndSub!: Subscription;
+  isDragging: boolean = false;
 
   constructor(
     private elementRef: ElementRef,
@@ -48,26 +49,31 @@ export class DruggableDirective implements OnInit, OnDestroy {
       xOffset: number = 0,
       yOffset: number = 0;
 
-    this.dragStartSub = dragStart.subscribe((e) => {
+    this.dragStartSub = dragStart.subscribe((e: MouseEvent) => {
       initialX = e.clientX - xOffset;
       initialY = e.clientY - yOffset;
 
-      console.log(initialX, initialY);
+      if (e.target === this.element) {
+        this.isDragging = true;
+      }
     });
 
-    this.dragSub = drag.subscribe((e) => {
-      e.preventDefault();
+    this.dragSub = drag.subscribe((e: MouseEvent) => {
+      if (this.isDragging) {
+        e.preventDefault();
 
-      currentX = e.clientX - initialX;
-      currentY = e.clientY - initialY;
+        currentX = e.clientX - initialX;
+        currentY = e.clientY - initialY;
 
-      this.setTransform(currentX, currentY);
+        this.setTransform(currentX, currentY);
+      }
     });
 
-    this.dragEndSub = dragEnd.subscribe((e) => {
+    this.dragEndSub = dragEnd.subscribe((e: MouseEvent) => {
       initialX = currentX;
       initialY = currentY;
-      console.log(initialX, initialY);
+      this.isDragging = false;
+      console.log(this.isDragging);
     });
   }
 }
