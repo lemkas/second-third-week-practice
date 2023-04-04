@@ -1,7 +1,9 @@
-<app-filter-input (getFilter)="filterHandler($event)"></app-filter-input>
-<ul class="todo-list">
-  <app-todo-list-item
-    *ngFor="let todo of todos | filter : filterOptions"
-    [todo]="todo"
-  ></app-todo-list-item>
-</ul>
+<div class="druggable-element" Draggable>
+  <app-filter-input (getFilter)="filterHandler($event)"></app-filter-input>
+  <ul class="todo-list">
+    <app-todo-list-item
+      *ngFor="let todo of todos | filter : filterOptions"
+      [todo]="todo"
+    ></app-todo-list-item>
+  </ul>
+</div>

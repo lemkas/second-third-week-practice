@@ -7,6 +7,7 @@ import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { TodoListItemComponent } from './components/todo-list-item/todo-list-item.component';
 import { FilterInputComponent } from './components/filter-input/filter-input.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DruggableDirective } from './directives/druggable.directive';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     TodoListComponent,
     TodoListItemComponent,
     FilterInputComponent,
+    DruggableDirective,
   ],
   imports: [BrowserModule, FormsModule, ReactiveFormsModule],
   providers: [],

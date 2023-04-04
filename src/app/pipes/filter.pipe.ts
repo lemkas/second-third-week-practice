@@ -6,7 +6,7 @@ import { ITodo, TODOSTATUS } from '../interfaces/todo';
 })
 export class FilterPipe implements PipeTransform {
   transform(value: ITodo[], filterOption: TODOSTATUS): ITodo[] {
-    if (filterOption && filterOption !== 'all') {
+    if (filterOption && filterOption !== TODOSTATUS.ALL) {
       return value.filter((todo) => todo.status === filterOption);
     } else {
       return value;
