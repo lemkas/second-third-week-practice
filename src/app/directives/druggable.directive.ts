@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Directive, ElementRef, Inject, OnInit } from '@angular/core';
-import { fromEvent, Subscription, takeUntil } from 'rxjs';
+import { fromEvent, Subscription } from 'rxjs';
 
 @Directive({
   selector: '[Draggable]',
